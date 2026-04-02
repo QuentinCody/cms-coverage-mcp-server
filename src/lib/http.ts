@@ -1,7 +1,7 @@
 import { restFetch } from "@bio-mcp/shared/http/rest-fetch";
 import type { RestFetchOptions } from "@bio-mcp/shared/http/rest-fetch";
 
-const CMS_COVERAGE_BASE = "https://www.cms.gov/medicare-coverage-database/rest/api/v1";
+const CMS_COVERAGE_BASE = "https://api.coverage.cms.gov";
 
 export interface CmsCoverageFetchOptions extends Omit<RestFetchOptions, "retryOn"> {
     baseUrl?: string;
