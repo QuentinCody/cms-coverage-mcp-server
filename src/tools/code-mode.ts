@@ -23,6 +23,8 @@ export function registerCodeMode(
 
     const executeTool = createExecuteTool({
         prefix: "cms_coverage",
+        // Verifiable provenance: cms_coverage_execute results carry a _meta.citation.
+        source: { id: "cms_coverage", name: "CMS Medicare Coverage Database", url: "https://www.cms.gov/medicare-coverage-database", license: "U.S. Public Domain" },
         catalog: cmsCoverageCatalog,
         apiFetch,
         doNamespace: env.CMS_COVERAGE_DATA_DO,
