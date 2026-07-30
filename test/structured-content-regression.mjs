@@ -40,7 +40,7 @@ console.log(`${BLUE}CMS Coverage Structured Content Regression Tests${RESET}`);
 // Verify index.ts structure
 const indexContent = readFile('src/index.ts');
 assertContains('src/index.ts', indexContent, 'CmsCoverageDataDO', 'index.ts exports CmsCoverageDataDO');
-assertContains('src/index.ts', indexContent, 'McpAgent', 'index.ts uses McpAgent');
+assertContains('src/index.ts', indexContent, 'StatelessMcpWorker', 'index.ts uses StatelessMcpWorker');
 assertContains('src/index.ts', indexContent, 'registerCodeMode', 'index.ts registers Code Mode');
 assertContains('src/index.ts', indexContent, 'registerQueryData', 'index.ts registers query-data');
 assertContains('src/index.ts', indexContent, 'registerGetSchema', 'index.ts registers get-schema');
@@ -59,10 +59,10 @@ assertContains('src/tools/code-mode.ts', codeModeContent, 'CMS_COVERAGE_DATA_DO'
 
 // Verify catalog
 const catalogContent = readFile('src/spec/catalog.ts');
-assertContains('src/spec/catalog.ts', catalogContent, '/search/ncd', 'catalog has NCD search endpoint');
-assertContains('src/spec/catalog.ts', catalogContent, '/search/lcd', 'catalog has LCD search endpoint');
-assertContains('src/spec/catalog.ts', catalogContent, '/contractors', 'catalog has contractors endpoint');
-assertContains('src/spec/catalog.ts', catalogContent, '/sad-exclusion-list', 'catalog has SAD exclusion list endpoint');
+assertContains('src/spec/catalog.ts', catalogContent, '/v1/reports/national-coverage-ncd/', 'catalog has NCD report endpoint');
+assertContains('src/spec/catalog.ts', catalogContent, '/v1/reports/local-coverage-final-lcds/', 'catalog has LCD report endpoint');
+assertContains('src/spec/catalog.ts', catalogContent, '/v1/data/contractor/', 'catalog has contractor data endpoint');
+assertContains('src/spec/catalog.ts', catalogContent, '/v1/reports/national-coverage-annual/', 'catalog has annual coverage endpoint');
 assertContains('src/spec/catalog.ts', catalogContent, 'national_coverage', 'catalog has national_coverage category');
 assertContains('src/spec/catalog.ts', catalogContent, 'local_coverage', 'catalog has local_coverage category');
 assertContains('src/spec/catalog.ts', catalogContent, 'reference', 'catalog has reference category');
