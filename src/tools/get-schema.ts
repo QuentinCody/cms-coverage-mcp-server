@@ -1,6 +1,7 @@
 import type { McpServer } from "@bio-mcp/shared/mcp";
 import { z } from "zod";
 import { createGetSchemaHandler } from "@bio-mcp/shared/staging/utils";
+import { cmsCoverageResponse } from "../lib/tool-result";
 
 interface SchemaEnv {
     CMS_COVERAGE_DATA_DO?: unknown;
@@ -9,8 +10,8 @@ interface SchemaEnv {
 export function registerGetSchema(server: McpServer, env?: SchemaEnv): void {
     const handler = createGetSchemaHandler("CMS_COVERAGE_DATA_DO", "cms_coverage");
 
-    server.registerTool(
-        "cms_coverage_get_schema",
+    for (const name of ["cms_coverage_get_schema", "mcp_cms_coverage_get_schema"]) server.registerTool(
+        name,
         {
             title: "Get Staged Data Schema",
             description:
@@ -24,11 +25,11 @@ export function registerGetSchema(server: McpServer, env?: SchemaEnv): void {
         },
         async (args, extra) => {
             const runtimeEnv = env || (extra as { env?: SchemaEnv })?.env || {};
-            return handler(
+            return cmsCoverageResponse(() => handler(
                 args as Record<string, unknown>,
                 runtimeEnv as Record<string, unknown>,
                 (extra as Record<string, unknown>),
-            );
+            ), runtimeEnv, name, extra, args);
         },
     );
 }

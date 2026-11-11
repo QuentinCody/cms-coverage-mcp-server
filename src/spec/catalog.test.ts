@@ -25,10 +25,11 @@ describe("cmsCoverageCatalog", () => {
 		);
 	});
 
-	it("does not advertise licensed detail routes that the adapter cannot authenticate", () => {
+	it("advertises licensed reads but never token acceptance", () => {
 		const paths = cmsCoverageCatalog.endpoints.map(({ path }) => path);
-		expect(paths).not.toContain("/v1/data/lcd/");
-		expect(paths).not.toContain("/v1/data/article/");
-		expect(paths).not.toContain("/v1/reports/local-coverage-sad-exclusion-list/");
+		expect(paths).toContain("/v1/data/lcd/");
+		expect(paths).not.toContain("/v1/metadata/license-agreement/");
+		expect(paths).toContain("/v1/data/article/");
+		expect(paths).toContain("/v1/reports/local-coverage-sad-exclusion-list/");
 	});
 });

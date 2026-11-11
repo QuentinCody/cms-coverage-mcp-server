@@ -11,6 +11,7 @@ export { CmsCoverageDataDO };
 interface CmsCoverageEnv {
     CMS_COVERAGE_DATA_DO: DurableObjectNamespace;
     CODE_MODE_LOADER: WorkerLoader;
+    CMS_COVERAGE_LICENSE_TOKEN?: string;
 }
 
 export class MyMCP extends StatelessMcpWorker {
